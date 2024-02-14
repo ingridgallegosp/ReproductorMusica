@@ -1,0 +1,1 @@
+export const filter = () =>{console.log('la importacion de funciones esta ok')}

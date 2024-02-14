@@ -12,82 +12,42 @@
     </header>
     <main>
         <section id="lists" class="lists">
-            <div class="search">
-                <input type="text" placeholder="">
+            <div class="searchContainer">
+                <input id="search" type="text" placeholder="">
                 <button>Buscar</button>
             </div>
 
-            <div class="list results">
+            <div  class="list results">
                 <h4>Resultados de búsqueda</h4>
-                <div class="song-container">                    
-                    <div class="song">
-                        <p>nombre de la cancion</p>
-                        <button>play</button>
-                        <button>like</button>
-                        <button>add</button>
-                    </div>
-                    
-                    <div class="song">
-                        <p>nombre de la cancion</p>
-                        <button>play</button>
-                        <button>like</button>
-                        <button>add</button>
-                    </div>
-                    <div class="song">
-                        <p>nombre de la cancion</p>
-                        <button>play</button>
-                        <button>like</button>
-                        <button>add</button>
-                    </div>
-                </div>
+                <ul id="results" class="song-container">                    
+                    <!-- Aquí van los resultados de la búsqueda -->
+                </ul>
             </div>
 
             <div class="list playlist">
                 <h4>Mi Playlist</h4>
-                <div class="song-container">
-                    <div class="song">
+                <ul id="playlist" class="song-container">
+                    <!-- Aquí van las canciones de mi playlist -->
+                    <li class="song">
                         <p>nombre de la cancion</p>
                         <button>play</button>
                         <button>like</button>
                         <button>remove</button>
-                    </div>
-                    <div class="song">
-                        <p>nombre de la cancion</p>
-                        <button>play</button>
-                        <button>like</button>
-                        <button>remove</button>
-                    </div>
-                    <div class="song">
-                        <p>nombre de la cancion</p>
-                        <button>play</button>
-                        <button>like</button>
-                        <button>remove</button>
-                    </div>
-                </div>
+                    </li>
+                </ul>
             </div>
 
-            <div class="list myFavorites">
+            <div class="list favorites">
                 <h4>Favoritos</h4>
-                <div class="song-container">
-                    <div class="song">
+                <ul id="favorites" class="song-container">
+                    <!-- Aquí van mis canciones favoritas -->
+                    <li class="song">
                         <p>nombre de la cancion</p>
                         <button>play</button>
                         <button>removelike</button>
                         <button>add</button>
-                    </div>
-                    <div class="song">
-                        <p>nombre de la cancion</p>
-                        <button>play</button>
-                        <button>removelike</button>
-                        <button>add</button>
-                    </div>
-                    <div class="song">
-                        <p>nombre de la cancion</p>
-                        <button>play</button>
-                        <button>removelike</button>
-                        <button>add</button>
-                    </div>
-                </div>
+                    </li>
+                </ul>
             </div>
         </section>
 
@@ -95,7 +55,7 @@
             <figure>
                 <img src='' alt="album-photo">
             </figure>
-            <div>
+            <div id="albumData">
                 <h3>Nombre de Canción</h3>
                 <p>Artista</p>
                 <p>Duración</p>
