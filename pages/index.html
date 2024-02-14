@@ -9,20 +9,109 @@
 <body>
     <header>
         <h1>Reproductor de Musica</h1>
-
     </header>
     <main>
-        <div>
-            aqui van las playlist
+        <section id="lists" class="lists">
+            <div class="search">
+                <input type="text" placeholder="">
+                <button>Buscar</button>
+            </div>
 
-        </div>
-        <div>
-            Aqui va la cancion que se reproduce
-        </div>
+            <div class="list results">
+                <h4>Resultados de búsqueda</h4>
+                <div class="song-container">                    
+                    <div class="song">
+                        <p>nombre de la cancion</p>
+                        <button>play</button>
+                        <button>like</button>
+                        <button>add</button>
+                    </div>
+                    
+                    <div class="song">
+                        <p>nombre de la cancion</p>
+                        <button>play</button>
+                        <button>like</button>
+                        <button>add</button>
+                    </div>
+                    <div class="song">
+                        <p>nombre de la cancion</p>
+                        <button>play</button>
+                        <button>like</button>
+                        <button>add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="list playlist">
+                <h4>Mi Playlist</h4>
+                <div class="song-container">
+                    <div class="song">
+                        <p>nombre de la cancion</p>
+                        <button>play</button>
+                        <button>like</button>
+                        <button>remove</button>
+                    </div>
+                    <div class="song">
+                        <p>nombre de la cancion</p>
+                        <button>play</button>
+                        <button>like</button>
+                        <button>remove</button>
+                    </div>
+                    <div class="song">
+                        <p>nombre de la cancion</p>
+                        <button>play</button>
+                        <button>like</button>
+                        <button>remove</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="list myFavorites">
+                <h4>Favoritos</h4>
+                <div class="song-container">
+                    <div class="song">
+                        <p>nombre de la cancion</p>
+                        <button>play</button>
+                        <button>removelike</button>
+                        <button>add</button>
+                    </div>
+                    <div class="song">
+                        <p>nombre de la cancion</p>
+                        <button>play</button>
+                        <button>removelike</button>
+                        <button>add</button>
+                    </div>
+                    <div class="song">
+                        <p>nombre de la cancion</p>
+                        <button>play</button>
+                        <button>removelike</button>
+                        <button>add</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="player" class="player">
+            <figure>
+                <img src='' alt="album-photo">
+            </figure>
+            <div>
+                <h3>Nombre de Canción</h3>
+                <p>Artista</p>
+                <p>Duración</p>
+                <p>Album</p>
+                <p>Año</p>
+                <p>Género</p>
+            </div>
+            <div class="buttons">
+                <button>previous</button>
+                <button>play</button>
+                <button>next</button>
+                <button>stop</button>
+                <button>mute</button>
+            </div>
+        </section>
     </main>
-        
-    
     <script type="module" src="/main.js"></script>
-
 </body>
 </html>
