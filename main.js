@@ -18,7 +18,7 @@ songs.forEach(
                 <p>${song}</p>
                 <button>play</button>
                 <button>like</button>
-                <button>remove</button>
+                <button>add</button>
             </li >
         `
     }
