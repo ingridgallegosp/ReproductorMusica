@@ -15,20 +15,23 @@ reproductor.mute()
 reproductor.pause()
 reproductor.stop()
 reproductor.next() 
+reproductor.buscarCancion()
+reproductor.mostrarCancionActual()
 
 favorites
 miPlaylist
 
+
 //Imprimir todas las canciones
 songs.forEach(song => {
     resultsContainer.innerHTML += `
-                                <li class="song">
-                                    <p>${song.nombre}</p>
-                                    <button class='playSongBtn'>play</button>
-                                    <button>like</button>
-                                    <button>add</button>
-                                </li >
-                            `
+        <li class="song">
+            <p>${song.nombre}</p>
+            <button class='playSongBtn'>play</button>
+            <button>like</button>
+            <button>add</button>
+        </li >
+    `;
 });
 
 //Filtrar busqueda
@@ -38,33 +41,42 @@ searchBtn.addEventListener('click', () => {
     const regExp = new RegExp(busqueda,'i');
     let cancionesFiltradas = filterSongsByRegex(songs, regExp);
     //console.log(cancionesFiltradas)
-    // Limpiamos el contenedor de resultados antes de agregar nuevos elementos
+    //Limpiamos el contenedor de resultados antes de agregar nuevos elementos
     resultsContainer.innerHTML = '';
 
     cancionesFiltradas.forEach(song => {
         resultsContainer.innerHTML += `
-                                <li class="song">
-                                    <p>${song.nombre}</p>
-                                    <button class='playSongBtn'>play</button>
-                                    <button>like</button>
-                                    <button>add</button>
-                                </li >
-                                `;
+            <li class="song">
+                <p>${song.nombre}</p>
+                <button class='playSongBtn'>play</button>
+                <button class='likeSongBtn'>like</button>
+                <button class='addSongBtn'>add</button>
+            </li >
+        `;
     });
-
 });
-
 
 // Obtener todos los botones de reproducción
-const playButtons = document.getElementsByClassName('playSongBtn');
+/* const playBtn = document.getElementsByClassName('playSongBtn');
+const playBtnArray = Array.from(playBtn);
 
-// Asignar eventos de clic a los botones de reproducción
-playButtons.forEach((button, index) => {
+playBtnArray.forEach((button, index) => {
     button.addEventListener('click', () => {
-        console.log('play cancniones'+[index])
-        
+        console.log('play canciones ' + index);
     });
+}); */
+
+//Boton de reproduccion canciones
+const playBtn = document.createElement('button');
+playBtn.classList.add('fa-solid', 'fa-play')
+playBtn.addEventListener('click', () => {
+    const urlSong = song.urlSong;
+    const audio = new Audio(urlSong);
+    audio.play();
 });
+
+
+
 
 
 
