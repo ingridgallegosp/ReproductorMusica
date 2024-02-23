@@ -1,7 +1,6 @@
-import { filter, filterSongsByRegex  } from '/logic.js';
+import { filter, filterSongsByRegex, reproductor, favorites, miPlaylist  } from '/logic.js';
 
-
-let songs = ["song1", "song2", "song3", "song4", "song5"];
+let songs = reproductor.catalogodeCanciones;
 
 const search = document.getElementById('search');
 const searchBtn = document.getElementById('searchBtn'); 
@@ -10,19 +9,27 @@ const playlistContainer = document.getElementById('playlist');
 const favoritesContainer = document.getElementById('favorites');
 
 filter();
-//Imprimir canciones
-songs.forEach(
-    song => {
-        resultsContainer.innerHTML += `
-            <li class="song">
-                <p>${song}</p>
-                <button>play</button>
-                <button>like</button>
-                <button>add</button>
-            </li >
-        `
-    }
-);
+
+reproductor.play()
+reproductor.mute()
+reproductor.pause()
+reproductor.stop()
+reproductor.next() 
+
+favorites
+miPlaylist
+
+//Imprimir todas las canciones
+songs.forEach(song => {
+    resultsContainer.innerHTML += `
+                                <li class="song">
+                                    <p>${song.nombre}</p>
+                                    <button class='playSongBtn'>play</button>
+                                    <button>like</button>
+                                    <button>add</button>
+                                </li >
+                            `
+});
 
 //Filtrar busqueda
 searchBtn.addEventListener('click', () => {
@@ -30,22 +37,46 @@ searchBtn.addEventListener('click', () => {
    
     const regExp = new RegExp(busqueda,'i');
     let cancionesFiltradas = filterSongsByRegex(songs, regExp);
-    console.log(cancionesFiltradas)
-    
+    //console.log(cancionesFiltradas)
     // Limpiamos el contenedor de resultados antes de agregar nuevos elementos
     resultsContainer.innerHTML = '';
 
     cancionesFiltradas.forEach(song => {
         resultsContainer.innerHTML += `
-            <li class="song">
-                <p>${song}</p>
-                <button>play</button>
-                <button>like</button>
-                <button>remove</button>
-            </li>
-        `;
+                                <li class="song">
+                                    <p>${song.nombre}</p>
+                                    <button class='playSongBtn'>play</button>
+                                    <button>like</button>
+                                    <button>add</button>
+                                </li >
+                                `;
+    });
+
+});
+
+
+// Obtener todos los botones de reproducción
+const playButtons = document.getElementsByClassName('playSongBtn');
+
+// Asignar eventos de clic a los botones de reproducción
+playButtons.forEach((button, index) => {
+    button.addEventListener('click', () => {
+        console.log('play cancniones'+[index])
+        
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

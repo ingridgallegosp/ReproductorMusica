@@ -32,7 +32,7 @@
                         <p>nombre de la cancion</p>
                         <button >play</button>
                         <button>like</button>
-                        <button>remove</button>
+                        <button>removeadd</button>
                     </li>
                 </ul>
             </div>
@@ -53,15 +53,20 @@
 
         <section id="player" class="player">
             <figure>
-                <img src='' alt="album-photo">
+                <img id="coverCancion" alt="album cover">
             </figure>
+
+            <audio ref="audioRef">
+                <source id="audioCancion" type="audio/mpeg">
+            </audio>
+
             <div id="albumData">
-                <h3 id="nombreCancion">Nombre de Canción</h3>
-                <p  id=""class="cancion">Artista</p>
-                <p  id=""class="cancion">Duración</p>
-                <p  id=""class="cancion">Album</p>
-                <p  id=""class="cancion">Año</p>
-                <p  id=""class="cancion">Género</p>
+                <h3 id="nombreCancion"></h3>
+                <p  id="authorCancion"class="cancion"></p>
+                <p  id="durationCancion"class="cancion"></p>
+                <p  id="albumCancion"class="cancion"></p>
+                <p  id="añoCancion"class="cancion"></p>
+                <p  id="generoCancion"class="cancion"></p>
             </div>
             <div class="buttons">
                 <button id="play">play</button>
