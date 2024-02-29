@@ -66,11 +66,33 @@ class Playlist {
         return `${this.ordenordenEscucha}`
     }
 
-    addSongToPlaylist(){
-         this.listaCanciones.push(song)
+    addSongToPlaylist(song){
+        this.listaCanciones.push(song);
+        //this.dibujarCanciones();
     }
 
-    removeSongFromPlaylist() {
+    dibujarCanciones() {
+        let canciones = document.getElementById(this.nombre);
+        let alterna = '';
+        let alterna2 = '';
+        switch (this.nombre) {
+            case 'resfavorites':
+                alterna = '+';
+                alterna2 = '*';
+                break;
+            case 'resmyPlaylist':
+                alterna = '-';
+                alterna2 = '/';
+                break;
+        }
+        canciones.innerHTML = +`
+
+        
+        `
+        
+    }
+
+    removeSongFromPlaylist(song) {
         this.listaCanciones=this.listaCanciones.filter(s=>s!==song) 
     }
 
@@ -97,6 +119,8 @@ class Reproductor {
     currentSong;
     currentPlaylist;
     constructor() {
+
+        //Inicializador de reproductor
         this.catalogodeCanciones = [
             new Song(1,'nombre1', 'author1', 'duracion1', 'album1', 'año1', 'genero1', '/assets/covers/1.jpg', '/assets/songs/1.mp3'),
             new Song(2,'nombre2', 'author2', 'duracion2', 'album2', 'año2', 'genero2', '/assets/covers/2.jpg', '/assets/songs/2.mp3'),
@@ -105,29 +129,28 @@ class Reproductor {
             new Song(5,'nombre5', 'author5', 'duracion5', 'album5', 'año5', 'genero5', '/assets/covers/5.jpg', '/assets/songs/5.mp3'),
         ] 
 
-        //this.mostrarCanciones(); //reproduce automatico
-        this.currentSong = this.catalogodeCanciones[0];
+        this.mostrarCanciones(); //reproduce automatico
+        this.currentSong = this.catalogodeCanciones[0]; // guarda cancion que estiy reproduciendo
         this.audio = new Audio();
         this.currentPlaylist = 'busqueda';
 
         this.miPlaylist = new Playlist('playlist');
         this.favorites = new Playlist('favorites');
 
-        document.addEventListener('playsong', () => {
+        //listener
+        document.addEventListener('playSong', () => {
             this.currentSong = e.detail.song;
             this.play();
         })
 
+        //empieza pausada
         this.isPause = false;
         this.inicializarControles();
-
-
 
         let buscar = document.getElementById('results');
         buscar.addEventListener('click', () => {
             this.buscarCancion(document.getElementById('search').value);
         });
-
 
         // registro play al construir la clase
         let play = document.getElementById('play');
@@ -136,16 +159,80 @@ class Reproductor {
         });
     };   
 
-    
-    //Metodo que muestra los nombres de canciones en reproductor
-    mostrarCanciones() {
-            /* let canciones = document.getElementById('nombreCancion');
-            this.catalogodeCanciones.forEach(song => {
-                canciones.innerHTML += `<p class='cancion'>${song.nombre}</p>`
-            }); */
+    inicializarControles() {//aqui se rompre
+        //Listener del buscador
+       /* let buscar = document.getElementById('buscar')
+        buscar.addEventListener('click', () => {
+/* 
+        });*/
+
+        //Controles
+
+
+        //
+        /* this.audio.addEventListener('ended', () => {
+            /* 
+        } ) */
+
+    }
+
+    //Metodo que muestra los nombres de canciones en lista de busqueda 
+    mostrarCanciones(playlist) {
+        let canciones = document.getElementById('results');
+        this.catalogodeCanciones.forEach(song => {
+            canciones.innerHTML += `
+                <li class="song" data-idCancion='${song.id}'>
+                    <span data-idCancion='${song.id}'>${song.nombre}</span>
+                    <button class='playSongBtn' data-idCancion='${song.id}'>play</button>
+                    <button class='likeSongBtn' data-idCancion='${song.id}'>like</button>
+                    <button class='addSongBtn' data-idCancion='${song.id}'>add</button>
+                </li >`;
+        }); 
+        
+        //Listener para boton de reproduccion en canciones
+        let playSongs = document.getElementsByClassName('playSongBtn');
+
+        for (let i = 0; i < playSongs.length; i++){
+            playSongs[i].addEventListener('click', () => {
+                this.currentPlaylist = 'busqueda'
+                let id = playSongs[i].parentElement.getAttribute('data-idCancion');
+                this.currentSong = this.catalogodeCanciones.find(song => song.id === id);
+                this.play();
+            });
+        };
+
+        //Listener para boton de favoritos en canciones
+        let favoriteSongs = document.getElementsByClassName('likeSongBtn');
+        
+        for (let i = 0; i < favoriteSongs.length; i++){
+            favoriteSongs[i].addEventListener('click', () => {
+                console.log('favorites ok')
+                this.currentPlaylist = 'results'
+                let id = favoriteSongs[i].parentElement.getAttribute('data-idCancion');
+                this.addPlaylist(id, 'favorites');
+            });
+        };
+
+        //Listener para boton de add  en canciones
+        let playListSongs = document.getElementsByClassName('addSongBtn');
+        
+        for (let i = 0; i < playListSongs.length; i++){
+            playListSongs[i].addEventListener('click', () => {
+                console.log('add ok')
+                this.currentPlaylist = 'results'
+                let id = playListSongs[i].parentElement.getAttribute('data-idCancion');
+                this.addPlaylist(id, 'playlist');
+            });
+        };
+
+
+
     }; 
 
+   
 
+
+    //Metodo que muestra la cancion actual en reproduccion
     mostrarCancionActual() {
         let cancionActual = document.getElementById('nombreCancion');
         cancionActual.innerHTML = `<p class='cancion'>${this.currentSong.nombre}</p>`;
@@ -167,7 +254,6 @@ class Reproductor {
 
         let coverActual = document.getElementById('coverCancion');
         coverActual.src = this.currentSong.cover;
-
     };
 
 
@@ -180,6 +266,22 @@ class Reproductor {
     buscarCancion(songAuthor) {
         return this.catalogodeCanciones.find(song => song.author === songAuthor)
     };
+
+
+    //Add playlist
+    addPlaylist  (id, playlist)  {
+        let cancion = this.catalogodeCanciones.find(song => song.id == id)
+        switch (playlist) {
+
+            case 'favorites':
+                this.favorites.addSongToPlaylist(cancion);
+                break;
+            case 'playlist':
+                this.miPlaylist.addSongToPlaylist(cancion);
+                break;            
+        };
+        
+    }
 
     //Metodo que busca una cancion por el valor del usuario de busqueda(clase8 25 min)
 
@@ -206,25 +308,16 @@ class Reproductor {
     };  */
 
     play() {
-        if (this.currentSong.urlSong !== undefined) {
+        if (this.currentSong.urlSong !== undefined && this.isPause== false) {
             this.audio.src = this.currentSong.urlSong;
             this.audio.play();
+            this.cambiarPortada();//-----------------------cambia portada
         } else {
-            let id
-            switch (this.currentPlaylist) {
-                case 'favorites': id = document.getElementById('favorites');
-                    break
-                case 'busqueda': id = document.getElementById('results');
-                    break
-                case 'lista': id = document.getElementById('playlist');
-                    break
-            }
-        this.currentSong = this.catalogodeCanciones.find(song => song.id === id);
-        this.audio.src = this.currentSong.urlSong;
-        this.audio.play();
-        }
-        this.cambiarPortada()
+            this.audio.play();
+            this.isPause = true;
+        };
     };
+
 
     //Reproducir cancion - solo como etiqueta de audio
    /*  play() {
@@ -243,11 +336,15 @@ class Reproductor {
 
     //Pausar cancion
     pause() {
-        let audioActual = document.getElementById('audioCancion');
         let pauseBtn = document.getElementById('pause');
         pauseBtn.addEventListener('click', () => {
             console.log('estoy pausando');
-            
+            //this.audio.pause()
+            if (!this.audio.paused) { // Si el audio no está pausado, entonces lo pausa
+                this.audio.pause();
+            } else { // Si el audio está pausado, entonces lo reanuda
+                this.audio.play();
+            }
         });
     }
 
@@ -256,6 +353,9 @@ class Reproductor {
         let stopBtn = document.getElementById('stop')
         stopBtn.addEventListener('click', () => {
             console.log('estoy detenido')
+            this.audio.pause();
+            this.audio.currentTime = 0;
+            this.isPause = true;
              
         })
         
@@ -265,7 +365,14 @@ class Reproductor {
     mute() {
         let muteBtn = document.getElementById('mute') 
         muteBtn.addEventListener('click', () => {
-            console.log('estoy muteado')
+            console.log('estoy muteado');
+           // this.audio.muted = !this.audio.muted;
+
+            if (this.audio.muted) {
+                this.audio.muted = false; // Restaurar el sonido
+            } else {
+                this.audio.muted = true; // Silenciar el audio
+            }
             
         })
         
@@ -276,15 +383,14 @@ class Reproductor {
         let nextBtn = document.getElementById('next') 
         nextBtn.addEventListener('click', () => {
             console.log('paso a siguiente cancion')
-            
+
+    
+        
            
         })
-    }
+    } 
     
-    /* loadSong(url) {
-        this.audio.src = url;
-        this.audio.play();
-    } */
+
 }
 
 

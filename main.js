@@ -35,7 +35,7 @@ songs.forEach(song => {
 });
 
 //Filtrar busqueda
-searchBtn.addEventListener('click', () => {
+/* searchBtn.addEventListener('click', () => {
     let busqueda = search.value;
    
     const regExp = new RegExp(busqueda,'i');
@@ -54,7 +54,7 @@ searchBtn.addEventListener('click', () => {
             </li >
         `;
     });
-});
+}); */
 
 // Obtener todos los botones de reproducción
 /* const playBtn = document.getElementsByClassName('playSongBtn');
