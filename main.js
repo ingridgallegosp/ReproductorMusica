@@ -1,4 +1,4 @@
-import { filter, filterSongsByRegex, reproductor, favorites, miPlaylist  } from '/logic.js';
+import { /* filter, */ filterSongsByRegex, reproductor, favorites, myPlaylist  } from '/logic.js';
 
 let songs = reproductor.catalogodeCanciones;
 
@@ -8,7 +8,7 @@ const resultsContainer = document.getElementById('results');
 const playlistContainer = document.getElementById('playlist');
 const favoritesContainer = document.getElementById('favorites');
 
-filter();
+//filter();
 
 reproductor.play()
 reproductor.mute()
@@ -17,13 +17,19 @@ reproductor.stop()
 reproductor.next() 
 reproductor.buscarCancion()
 reproductor.mostrarCancionActual()
+reproductor.mostrarCanciones()
+reproductor.inicializarControles()
+
+
+
+    
 
 favorites
-miPlaylist
+myPlaylist 
 
 
 //Imprimir todas las canciones
-songs.forEach(song => {
+/* songs.forEach(song => {
     resultsContainer.innerHTML += `
         <li class="song">
             <p>${song.nombre}</p>
@@ -32,7 +38,7 @@ songs.forEach(song => {
             <button>add</button>
         </li >
     `;
-});
+}); */
 
 //Filtrar busqueda
 /* searchBtn.addEventListener('click', () => {
@@ -67,13 +73,13 @@ playBtnArray.forEach((button, index) => {
 }); */
 
 //Boton de reproduccion canciones
-const playBtn = document.createElement('button');
+/* const playBtn = document.createElement('button');
 playBtn.classList.add('fa-solid', 'fa-play')
 playBtn.addEventListener('click', () => {
     const urlSong = song.urlSong;
     const audio = new Audio(urlSong);
     audio.play();
-});
+}); */
 
 
 

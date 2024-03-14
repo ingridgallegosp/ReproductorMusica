@@ -28,12 +28,14 @@ main .lists .list{
     height: 30% ;
     width: 100%;
     padding: 3% 1%;
-    overflow-y: scroll;
 }
 
-/* main .lists .list .results ul{
-  overflow-y: scroll;
-} */
+main .lists .results ul, 
+main .lists .favorites ul,
+main .lists .playlist ul{
+    height: 80%;
+    overflow-y: scroll;
+} 
 
 
 main .player{
