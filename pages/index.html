@@ -9,6 +9,7 @@
 <body>
     <header>
         <h1>Reproductor de Música</h1>
+        <button id="logout">Log Out</button>
     </header>
     <main>
         <section id="lists" class="lists">
@@ -28,12 +29,6 @@
                 <h4>Mi Playlist</h4>
                 <ul id="playlist" class="song-container">
                     <!-- Aquí van las canciones de mi playlist -->
-                    <li class="song">
-                        <p>nombre de la cancion</p>
-                        <button>play</button>
-                        <button>like</button>
-                        <button>remove</button>
-                    </li>
                 </ul>
             </div>
 
@@ -41,31 +36,31 @@
                 <h4>Favoritos</h4>
                 <ul id="favorites" class="song-container">
                     <!-- Aquí van mis canciones favoritas -->
-                    <li class="song">
-                        <p>nombre de la cancion</p>
-                        <button>play</button>
-                        <button>removelike</button>
-                        <button>add</button>
-                    </li>
                 </ul>
             </div>
         </section>
 
         <section id="player" class="player">
             <figure>
-                <img src='' alt="album-photo">
+                <img id="coverCancion" alt="album cover">
             </figure>
+
+            <!-- <audio ref="audioRef">
+                <source id="audioCancion" type="audio/mpeg">
+            </audio> -->
+
             <div id="albumData">
-                <h3>Nombre de Canción</h3>
-                <p>Artista</p>
-                <p>Duración</p>
-                <p>Album</p>
-                <p>Año</p>
-                <p>Género</p>
+                <h3 id="nombreCancion"></h3>
+                <p  id="authorCancion"class="cancion"></p>
+                <p  id="durationCancion"class="cancion"></p>
+                <p  id="albumCancion"class="cancion"></p>
+                <p  id="añoCancion"class="cancion"></p>
+                <p  id="generoCancion"class="cancion"></p>
             </div>
             <div class="buttons">
                 <button id="play">play</button>
                 <button id="next">next</button>
+                <button id="pause">pause</button>
                 <button id="stop">stop</button>
                 <button id="mute">mute</button>
             </div>

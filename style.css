@@ -28,15 +28,38 @@ main .lists .list{
     height: 30% ;
     width: 100%;
     padding: 3% 1%;
-    overflow-y: scroll;
 }
 
-/* main .lists .list .results ul{
-  overflow-y: scroll;
-} */
+main .lists .results ul, 
+main .lists .favorites ul,
+main .lists .playlist ul{
+    height: 80%;
+    overflow-y: scroll;
+} 
 
 
 main .player{
     width: 70%;
     padding: 0 2%;
+    display: flex;
+    flex-direction: column;
+}
+
+main .player figure{    
+    height: 60%;
+    display: flex;
+    justify-content: center;
+}
+
+main .player figure #coverCancion{
+    height: 100%;
+}
+
+main .player .albumData{
+    text-align: center;
+}
+main .player .buttons{
+    padding: 5% 10%;
+    display: flex;
+    justify-content: space-evenly;
 }
