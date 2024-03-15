@@ -28,6 +28,16 @@ favorites
 myPlaylist 
 
 
+if (localStorage.getItem("isLogged")){
+    
+    const logoutBtn = document.getElementById("logout")
+    logoutBtn.addEventListener("click",()=>{
+        localStorage.removeItem("isLogged")
+        window.location.href = "/pages/logIn.html"
+    })
+}
+
+
 //Imprimir todas las canciones
 /* songs.forEach(song => {
     resultsContainer.innerHTML += `
